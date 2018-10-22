@@ -5,6 +5,7 @@ import com.dokan.java.DokanyOperations;
 import com.dokan.java.DokanyUtils;
 import com.dokan.java.constants.microsoft.FileAttribute;
 import com.sun.jna.Structure;
+import com.sun.jna.platform.win32.WinBase;
 import com.sun.jna.platform.win32.WinBase.FILETIME;
 import com.sun.jna.platform.win32.WinNT;
 
@@ -89,6 +90,15 @@ public class ByHandleFileInformation extends Structure implements Structure.ByRe
 
     public ByHandleFileInformation() {
         this(null, null, null);
+    }
+
+    public ByHandleFileInformation(Path filePath, int attrs, FileTime creationTime, FileTime lastAccessTime, FileTime lastWriteTime, int volumeSerialNumber, long fileSize, long fileIndex) {
+        this.filePath = filePath;
+        this.dwFileAttributes = attrs;
+        this.setTimes(creationTime.toMillis(), lastAccessTime.toMillis(), lastWriteTime.toMillis());
+        this.setIndex(fileIndex);
+        this.setFileSize(fileSize);
+        this.dwVolumeSerialNumber = volumeSerialNumber;
     }
 
     public ByHandleFileInformation(Path filePath, EnumIntegerSet<FileAttribute> attrs, FileTime creationTime, FileTime lastAccessTime, FileTime lastWriteTime, int volumeSerialNumber, long fileSize, long fileIndex) {
@@ -214,6 +224,14 @@ public class ByHandleFileInformation extends Structure implements Structure.ByRe
 
     public long getFileIndex() {
         return fileIndex;
+    }
+
+    public WinBase.WIN32_FIND_DATA toWin32FindData() {
+        final char[] cFileName = DokanyUtils.trimFrontSeparator(DokanyUtils.trimStrToSize(filePath.toString(), 260)).toCharArray();
+        final char[] cAlternateFileName = new char[14];
+        // val cAlternateFileName = Utils.trimFrontSlash(Utils.trimStrToSize(path, 14)).toCharArray();
+        // TODO: implement alternate name
+        return new WinBase.WIN32_FIND_DATA(dwFileAttributes, ftCreationTime, ftLastAccessTime, ftLastWriteTime, nFileSizeHigh, nFileSizeLow, 0, 0, cFileName, cAlternateFileName);
     }
 
     @Override
