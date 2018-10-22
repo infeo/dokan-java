@@ -9035,5 +9035,10 @@ public final class NtStatuses {
      */
     public static final int STATUS_VHD_DIFFERENCING_CHAIN_ERROR_IN_PARENT = 0XC03A0019;
 
+
+    private NtStatuses(){
+
+    }
+
 }
 			
