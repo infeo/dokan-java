@@ -7,7 +7,7 @@ import com.sun.jna.ptr.IntByReference;
 /**
  * Enum of actions to take on a not-necessarily existing file or device.
  * <p>These values are the userspace equivalent of {@link CreateDisposition}.
- * For a given CreateDisposition value the corresponding CreationDisposition value can be computed via the {@link com.dokany.java.migrated.NativeMethods#DokanMapKernelToUserCreateFileFlags(long, long, long, long,
+ * For a given CreateDisposition value the corresponding CreationDisposition value can be computed via the {@link com.dokan.java.NativeMethods#DokanMapKernelToUserCreateFileFlags(long, long, long, long,
  * IntByReference, IntByReference, IntByReference)}
  * </p>
  *
@@ -26,23 +26,23 @@ import com.sun.jna.ptr.IntByReference;
  * <tbody>
  * <tr>
  * <th scope="row">CREATE_ALWAYS</td>
- * <td>Overwrite the file and return {@link Win32ErrorCode#ERROR_ALREADY_EXISTS}.</td>
+ * <td>Overwrite the file and return {@link Win32ErrorCodes#ERROR_ALREADY_EXISTS}.</td>
  * <td>Create the file.</td>
  * </tr>
  * <tr>
  * <th scope="row">CREATE_NEW</td>
- * <td>Fail and return {@link Win32ErrorCode#ERROR_ALREADY_EXISTS}.</td>
+ * <td>Fail and return {@link Win32ErrorCodes#ERROR_ALREADY_EXISTS}.</td>
  * <td>Create the file.</td>
  * </tr>
  * <tr>
  * <th scope="row">OPEN_ALWAYS</td>
- * <td>Open the file and return {@link Win32ErrorCode#ERROR_ALREADY_EXISTS}.</td>
+ * <td>Open the file and return {@link Win32ErrorCodes#ERROR_ALREADY_EXISTS}.</td>
  * <td>Create the file.</td>
  * </tr>
  * <tr>
  * <th scope="row">OPEN_EXISTING</td>
  * <td>Open the file.</td>
- * <td>Fail and return {@link Win32ErrorCode#ERROR_FILE_NOT_FOUND}.</td>
+ * <td>Fail and return {@link Win32ErrorCodes#ERROR_FILE_NOT_FOUND}.</td>
  * </tr>
  * <tr>
  * <th scope="row">TRUNCATE_EXISTING</td>
