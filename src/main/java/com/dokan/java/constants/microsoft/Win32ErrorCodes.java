@@ -6,7 +6,7 @@ import com.dokan.java.FileSystemInformation;
 /**
  * Win32 Error Codes
  * <p>
- * These should be returned instead of {@link NtStatus} values when in the {@link com.dokan.java.AbstractDokanyFileSystem#AbstractDokanyFileSystem(FileSystemInformation, boolean)} the `useKernelFlagsAndCodes` is set to
+ * These should be returned instead of {@link NtStatuses} values when in the {@link com.dokan.java.AbstractDokanyFileSystem#AbstractDokanyFileSystem(FileSystemInformation, boolean)} the `useKernelFlagsAndCodes` is set to
  * false.
  * </p>
  *
@@ -5814,7 +5814,7 @@ public final class Win32ErrorCodes {
     public static final int NERR_UnableToAddName_F = 0X0000089D;
 
     /**
-     * @W The logoff processor did not delete the message   alias.
+     * &#64;W The logoff processor did not delete the message   alias.
      */
     public static final int NERR_UnableToDelName_W = 0X0000089E;
 
@@ -10503,7 +10503,7 @@ public final class Win32ErrorCodes {
     public static final int ERROR_DS_PDC_OPERATION_IN_PROGRESS = 0X0000212A;
 
     /**
-     * A cross-domain move operation failed because two   versions of the moved object existâ€”one each in the source and destination   domains. The destination object needs to be removed to restore the system to   a
+     * A cross-domain move operation failed because two   versions of the moved object exist - one each in the source and destination   domains. The destination object needs to be removed to restore the system to   a
      * consistent state.
      */
     public static final int ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD = 0X0000212B;
@@ -12032,7 +12032,7 @@ public final class Win32ErrorCodes {
     public static final int WSA_QOS_ADMISSION_FAILURE = 0X00002B02;
 
     /**
-     * Rejected for administrative reasonsâ€”bad credentials.
+     * Rejected for administrative reasons - bad credentials.
      */
     public static final int WSA_QOS_POLICY_FAILURE = 0X00002B03;
 
@@ -12935,7 +12935,7 @@ public final class Win32ErrorCodes {
     public static final int ERROR_SXS_XML_E_MISSINGWHITESPACE = 0X000036D5;
 
     /**
-     * Manifest Parse Error: The angle bracket (>)   character was expected.
+     * Manifest Parse Error: The angle bracket (&rsaquo;)   character was expected.
      */
     public static final int ERROR_SXS_XML_E_EXPECTINGTAGEND = 0X000036D6;
 
@@ -13050,7 +13050,7 @@ public final class Win32ErrorCodes {
     public static final int ERROR_SXS_XML_E_UNCLOSEDSTARTTAG = 0X000036EC;
 
     /**
-     * Manifest Parse Error: End element was missing the   angle bracket (>) character.
+     * Manifest Parse Error: End element was missing the angle bracket (&rsaquo;) character.
      */
     public static final int ERROR_SXS_XML_E_UNCLOSEDENDTAG = 0X000036ED;
 

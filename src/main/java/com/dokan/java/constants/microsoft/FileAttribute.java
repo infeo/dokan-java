@@ -8,7 +8,7 @@ import com.sun.jna.platform.win32.WinNT;
  * File attributes flags. They are  metadata values stored by the file system on disk and are used by the system.
  *
  * @see <a href="https://docs.microsoft.com/en-us/windows/desktop/FileIO/file-attribute-constants">Microsoft documentation of file attribute constants</a>
- * @see <a href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-createfilea>Microsoft documentation of CreateFileA function including the list of valid file attributes</a>
+ * @see <a href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-createfilea">Microsoft documentation of CreateFileA function including the list of valid file attributes</a>
  */
 public enum FileAttribute implements EnumInteger {
     ARCHIVE(WinNT.FILE_ATTRIBUTE_ARCHIVE),

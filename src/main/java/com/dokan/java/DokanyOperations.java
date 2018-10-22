@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.dokan.java.constants.dokany.MountOption;
-import com.dokan.java.constants.microsoft.NtStatus;
+import com.dokan.java.constants.microsoft.NtStatuses;
 import com.dokan.java.constants.microsoft.FileSystemFlag;
 import com.dokan.java.structure.ByHandleFileInformation;
 import com.dokan.java.structure.DokanFileInfo;
@@ -25,12 +25,12 @@ import com.sun.jna.ptr.LongByReference;
  * <p>
  * A struct of callbacks that describe all Dokany API operation that will be called when Windows accesses the file system.
  * <p>
- * If an error occurs, return {@link NtStatus}.
+ * The return value is always one of the {@link NtStatuses} values.
  * <p>
- * All these callbacks can be set to <i>null</i> or return {@link NtStatus#NOT_IMPLEMENTED} if you don't want to support one of them. Be aware that returning such a value to important callbacks such as {@link
+ * All these callbacks can be set to <i>null</i> or return {@link NtStatuses#STATUS_NOT_IMPLEMENTED} if you don't want to support one of them. Be aware that returning such a value to important callbacks such as {@link
  * DokanyOperations.ZwCreateFile} or {@link DokanyOperations.ReadFile} would make the file system not working or unstable.
  * <p>
- * This is the same struct as <i>_DOKAN_OPERATIONS</i> (dokan.h) in the C++ version of Dokany.</remarks>
+ * This is the same struct as <i>_DOKAN_OPERATIONS</i> (dokan.h) in the C++ version of Dokany.
  */
 public class DokanyOperations extends Structure {
 
@@ -97,7 +97,7 @@ public class DokanyOperations extends Structure {
     /**
      * CreateFile is called each time a request is made on a file system object.
      * <p>
-     * If the file is a directory, this method is also called. In this case, the method should return {@link NtStatus#SUCCESS} when that directory can be opened and {@link DokanFileInfo#IsDirectory} has to be set to
+     * If the file is a directory, this method is also called. In this case, the method should return {@link NtStatuses#STATUS_SUCCESS} when that directory can be opened and {@link DokanFileInfo#IsDirectory} has to be set to
      * <i>true</i>. {@link DokanFileInfo#Context} can be used to store data FileStream that can be retrieved in all other request related to the context.
      *
      * @see <a href="https://msdn.microsoft.com/en-us/library/windows/hardware/ff566424(v=vs.85).aspx">MSDN for more information about the parameters of this callback.</a>
@@ -114,7 +114,7 @@ public class DokanyOperations extends Structure {
          * @param rawCreateDisposition
          * @param rawCreateOptions Represents advanced options for creating a File object. See <a href="https://msdn.microsoft.com/en-us/library/system.io.fileoptions(v=vs.110).aspx">MSDN</a>
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -174,7 +174,7 @@ public class DokanyOperations extends Structure {
          * @param rawReadLength
          * @param rawOffset
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -198,7 +198,7 @@ public class DokanyOperations extends Structure {
          * @param rawNumberOfBytesWritten
          * @param rawOffset
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -219,7 +219,7 @@ public class DokanyOperations extends Structure {
         /**
          * @param rawPath
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -236,7 +236,7 @@ public class DokanyOperations extends Structure {
          * @param fileName
          * @param handleFileInfo
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString fileName,
@@ -254,7 +254,7 @@ public class DokanyOperations extends Structure {
          * @param rawPath
          * @param rawFillFindData
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -273,7 +273,7 @@ public class DokanyOperations extends Structure {
          * @param searchPattern
          * @param rawFillFindData
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString fileName,
@@ -292,7 +292,7 @@ public class DokanyOperations extends Structure {
          * @param rawPath
          * @param rawAttributes
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -312,7 +312,7 @@ public class DokanyOperations extends Structure {
          * @param rawLastAccessTime time of last access
          * @param rawLastWriteTime time of last modification
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -325,12 +325,12 @@ public class DokanyOperations extends Structure {
     /**
      * Check if it is possible to delete a file.
      * <p>
-     * You should NOT delete the file in this method, but instead you must only check whether you can delete the file or not, and return {@link NtStatus#SUCCESS} (when you can delete it) or appropriate error codes such
-     * as {@link NtStatus#ACCESS_DENIED}, {@link NtStatus#OBJECT_NO_LONGER_EXISTS}, {@link NtStatus#OBJECT_NAME_NOT_FOUND}.
+     * You should NOT delete the file in this method, but instead you must only check whether you can delete the file or not, and return {@link NtStatuses#STATUS_SUCCESS} (when you can delete it) or appropriate error codes such
+     * as {@link NtStatuses#STATUS_ACCESS_DENIED}, {@link NtStatuses#STATUS_OBJECT_NO_LONGER_EXISTS}, {@link NtStatuses#STATUS_OBJECT_NAME_NOT_FOUND}.
      * <p>
      * {@link DokanyOperations.DeleteFile} will also be called with {@link DokanFileInfo#DeleteOnClose} set to <i>false</i> to notify the driver when the file is no longer requested to be deleted.
      * <p>
-     * When you return {@link NtStatus#SUCCESS}, you get a {@link DokanyOperations.Cleanup}> call afterwards with {@link DokanFileInfo#DeleteOnClose} set to <i>true</i> and only then you have to actually delete the file
+     * When you return {@link NtStatuses#STATUS_SUCCESS}, you get a {@link DokanyOperations.Cleanup}> call afterwards with {@link DokanFileInfo#DeleteOnClose} set to <i>true</i> and only then you have to actually delete the file
      * being closed.
      *
      * @see {@link DokanyOperations.DeleteDirectory}
@@ -341,7 +341,7 @@ public class DokanyOperations extends Structure {
         /**
          * @param rawPath
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -359,7 +359,7 @@ public class DokanyOperations extends Structure {
         /**
          * @param rawPath
          * @param dokanFileInfo {@link DokanFileInfo} with information about the directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -377,7 +377,7 @@ public class DokanyOperations extends Structure {
          * @param rawNewFileName
          * @param rawReplaceIfExisting
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -396,7 +396,7 @@ public class DokanyOperations extends Structure {
          * @param rawPath
          * @param rawByteOffset
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -414,7 +414,7 @@ public class DokanyOperations extends Structure {
          * @param rawPath
          * @param rawLength
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -433,7 +433,7 @@ public class DokanyOperations extends Structure {
          * @param rawByteOffset
          * @param rawLength
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -453,7 +453,7 @@ public class DokanyOperations extends Structure {
          * @param rawByteOffset
          * @param rawLength
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -477,7 +477,7 @@ public class DokanyOperations extends Structure {
          * @param totalNumberOfBytes
          * @param totalNumberOfFreeBytes
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 LongByReference freeBytesAvailable,
@@ -494,7 +494,7 @@ public class DokanyOperations extends Structure {
      *
      * @see {@link FileSystemFlag#READ_ONLY_VOLUME} is automatically added to the <paramref name="features"/> if <see cref="DokanOpts.WriteProtection"/> was specified when the volume was mounted.
      * <p>
-     * If {@link NtStatus#NOT_IMPLEMENTED} is returned, the Dokany kernel driver use following settings by default:
+     * If {@link NtStatuses#STATUS_NOT_IMPLEMENTED} is returned, the Dokany kernel driver use following settings by default:
      *
      * <ul>
      * <li>rawVolumeSerialNumber = 0x19831116</li>
@@ -515,7 +515,7 @@ public class DokanyOperations extends Structure {
          * @param rawFileSystemNameBuffer
          * @param rawFileSystemNameSize
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 Pointer rawVolumeNameBuffer,
@@ -563,7 +563,7 @@ public class DokanyOperations extends Structure {
          * @param rawSecurityDescriptorLength
          * @param rawSecurityDescriptorLengthNeeded
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -588,7 +588,7 @@ public class DokanyOperations extends Structure {
          * @param rawSecurityDescriptor
          * @param rawSecurityDescriptorLength
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,
@@ -621,7 +621,7 @@ public class DokanyOperations extends Structure {
          * @param rawPath
          * @param rawFillFindData
          * @param dokanFileInfo {@link DokanFileInfo} with information about the file or directory.
-         * @return {@link NtStatus}
+         * @return {@link NtStatuses}
          */
         long callback(
                 WString rawPath,

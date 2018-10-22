@@ -5,7 +5,7 @@ import com.dokan.java.constants.EnumInteger;
 import com.dokan.java.structure.DokanOptions;
 
 /**
- * Return Values of {@link com.dokany.java.migrated.NativeMethods#DokanMain(DokanOptions, DokanyOperations)}
+ * Return Values of {@link com.dokan.java.NativeMethods#DokanMain(DokanOptions, DokanyOperations)}
  *
  * @see <a href="https://dokan-dev.github.io/dokany-doc/html/group___dokan_main_result.html#ga39e6334f1cca7437400660e123c7d98f">Dokany documentation</a>
  */

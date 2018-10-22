@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Contains information that the {@link DokanyOperations.GetFileInformation} function retrieves.
+ * Contains information that the {@link DokanyOperations#GetFileInformation} function retrieves.
  * <p>
  * The identifier that is stored in the nFileIndexHigh and nFileIndexLow members is called the file ID. Support for file IDs is file system-specific. File IDs are not guaranteed to be unique over time, because file
  * systems are free to reuse them. In some cases, the file ID for a file can change over time.

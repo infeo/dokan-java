@@ -13,6 +13,7 @@ import com.sun.jna.ptr.IntByReference;
  *
  * <p>
  * The following table shows the actions performed on a file for the given flag distinguishing if the file already exists or not:
+ * </p>
  *
  * <table class="striped">
  * <caption style="display:none">additional options</caption>
@@ -25,33 +26,32 @@ import com.sun.jna.ptr.IntByReference;
  * </thead>
  * <tbody>
  * <tr>
- * <th scope="row">CREATE_ALWAYS</td>
+ * <th scope="row">CREATE_ALWAYS</th>
  * <td>Overwrite the file and return {@link Win32ErrorCodes#ERROR_ALREADY_EXISTS}.</td>
  * <td>Create the file.</td>
  * </tr>
  * <tr>
- * <th scope="row">CREATE_NEW</td>
+ * <th scope="row">CREATE_NEW</th>
  * <td>Fail and return {@link Win32ErrorCodes#ERROR_ALREADY_EXISTS}.</td>
  * <td>Create the file.</td>
  * </tr>
  * <tr>
- * <th scope="row">OPEN_ALWAYS</td>
+ * <th scope="row">OPEN_ALWAYS</th>
  * <td>Open the file and return {@link Win32ErrorCodes#ERROR_ALREADY_EXISTS}.</td>
  * <td>Create the file.</td>
  * </tr>
  * <tr>
- * <th scope="row">OPEN_EXISTING</td>
+ * <th scope="row">OPEN_EXISTING</th>
  * <td>Open the file.</td>
  * <td>Fail and return {@link Win32ErrorCodes#ERROR_FILE_NOT_FOUND}.</td>
  * </tr>
  * <tr>
- * <th scope="row">TRUNCATE_EXISTING</td>
+ * <th scope="row">TRUNCATE_EXISTING</th>
  * <td>Truncate the file, and overwrite it.</td>
  * <td>Fail.</td>
  * </tr>
  * </tbody>
  * </table>
- * </p>
  *
  * @see <a href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-createfilea#parameters">The Microsoft Documentation of CreateFile</a>
  * @see <a href="https://stackoverflow.com/questions/14469607/difference-between-open-always-and-create-always-in-createfile-of-windows-api">StackOverFlow Answer summing up the above table</a>.

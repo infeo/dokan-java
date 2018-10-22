@@ -8,14 +8,16 @@ import com.sun.jna.platform.win32.WinNT;
  * Defines standard, specific, and generic rights. These rights are used in access control entries (ACEs) and are the primary means of specifying the requested or granted access to
  * an object.
  *
- * @see @{linkplain https://msdn.microsoft.com/en-us/library/windows/desktop/aa374896(v=vs.85).aspx}
- * @see @{linkplain https://msdn.microsoft.com/en-us/library/windows/desktop/aa374892(v=vs.85).aspx}
+ * TODO
+ *
+ * @see <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa374896(v=vs.85).aspx"> Microsoft documentation</a>
+ * @see <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa374892(v=vs.85).aspx"> Some other microsoft doc</a>
  */
 public enum FileAccess implements EnumInteger {
     /**
      * Read access right to an object.
      * <p>
-     * nativeconst{FILE_READ_DATA,0x00000001,File & pipe}
+     * nativeconst{FILE_READ_DATA,0x00000001,File &amp; pipe}
      * <p>
      * nativeconst{FILE_LIST_DIRECTORY,0x00000001,Directory}
      */
@@ -23,7 +25,7 @@ public enum FileAccess implements EnumInteger {
     /**
      * Write access right to an object.
      * <p>
-     * nativeconst{FILE_WRITE_DATA,0x00000002,File & pipe}
+     * nativeconst{FILE_WRITE_DATA,0x00000002,File &amp; pipe}
      * <p>
      * nativeconst{FILE_ADD_FILE,0x00000002,Directory}
      */
@@ -45,7 +47,7 @@ public enum FileAccess implements EnumInteger {
     /**
      * The right to write extended file attributes.
      * <p>
-     * nativeconst{FILE_WRITE_EA,0x00000010,File & directory}
+     * nativeconst{FILE_WRITE_EA,0x00000010,File &amp; directory}
      */
     WRITE_EXTENDED_ATTRIBUTES(1 << 4),
     /**

@@ -32,17 +32,17 @@ public enum AccessControlEntryType implements Byteable {
 	ACCESS_ALLOWED_COMPOUND_ACE_TYPE((byte) 0x04),
 
 	/**
-	 * Object-specific access-allowed ACE that uses the ACCESS_ALLOWED_OBJECT_ACE (section 2.4.4.3) structure.<42>
+	 * Object-specific access-allowed ACE that uses the ACCESS_ALLOWED_OBJECT_ACE (section 2.4.4.3) structure.
 	 */
 	ACCESS_ALLOWED_OBJECT_ACE_TYPE((byte) 0x05),
 
 	/**
-	 * Object-specific access-denied ACE that uses the ACCESS_DENIED_OBJECT_ACE (section 2.4.4.5) structure.<43>
+	 * Object-specific access-denied ACE that uses the ACCESS_DENIED_OBJECT_ACE (section 2.4.4.5) structure.
 	 */
 	ACCESS_DENIED_OBJECT_ACE_TYPE((byte) 0x06),
 
 	/**
-	 * Object-specific system-audit ACE that uses the SYSTEM_AUDIT_OBJECT_ACE (section 2.4.4.11) structure.<44>
+	 * Object-specific system-audit ACE that uses the SYSTEM_AUDIT_OBJECT_ACE (section 2.4.4.11) structure.
 	 */
 	SYSTEM_AUDIT_OBJECT_ACE_TYPE((byte) 0x07),
 
@@ -52,27 +52,27 @@ public enum AccessControlEntryType implements Byteable {
 	SYSTEM_ALARM_OBJECT_ACE_TYPE((byte) 0x08),
 
 	/**
-	 * Access-allowed callback ACE that uses the ACCESS_ALLOWED_CALLBACK_ACE (section 2.4.4.6) structure.<45>
+	 * Access-allowed callback ACE that uses the ACCESS_ALLOWED_CALLBACK_ACE (section 2.4.4.6) structure.
 	 */
 	ACCESS_ALLOWED_CALLBACK_ACE_TYPE((byte) 0x09),
 
 	/**
-	 * Access-denied callback ACE that uses the ACCESS_DENIED_CALLBACK_ACE (section 2.4.4.7) structure.<46>
+	 * Access-denied callback ACE that uses the ACCESS_DENIED_CALLBACK_ACE (section 2.4.4.7) structure.
 	 */
 	ACCESS_DENIED_CALLBACK_ACE_TYPE((byte) 0x0A),
 
 	/**
-	 * Object-specific access-allowed callback ACE that uses the ACCESS_ALLOWED_CALLBACK_OBJECT_ACE (section 2.4.4.8) structure.<47>
+	 * Object-specific access-allowed callback ACE that uses the ACCESS_ALLOWED_CALLBACK_OBJECT_ACE (section 2.4.4.8) structure.
 	 */
 	ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE((byte) 0x0B),
 
 	/**
-	 * Object-specific access-denied callback ACE that uses the ACCESS_DENIED_CALLBACK_OBJECT_ACE (section 2.4.4.9) structure.<48>
+	 * Object-specific access-denied callback ACE that uses the ACCESS_DENIED_CALLBACK_OBJECT_ACE (section 2.4.4.9) structure.
 	 */
 	ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE((byte) 0x0C),
 
 	/**
-	 * System-audit callback ACE that uses the SYSTEM_AUDIT_CALLBACK_ACE (section 2.4.4.12) structure.<49>
+	 * System-audit callback ACE that uses the SYSTEM_AUDIT_CALLBACK_ACE (section 2.4.4.12) structure.
 	 */
 	SYSTEM_AUDIT_CALLBACK_ACE_TYPE((byte) 0x0D),
 

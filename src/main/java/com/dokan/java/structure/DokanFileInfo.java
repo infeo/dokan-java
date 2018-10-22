@@ -30,7 +30,7 @@ public class DokanFileInfo extends Structure implements Structure.ByReference {
     public long DokanContext;
 
     /**
-     * A pointer to {@link DokanOptions} which was passed to {@link com.dokany.java.migrated.NativeMethods#DokanMain}.
+     * A pointer to {@link DokanOptions} which was passed to {@link com.dokan.java.NativeMethods#DokanMain}.
      */
     public DokanOptions DokanOpts;
 

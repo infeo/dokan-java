@@ -7,7 +7,7 @@ import com.sun.jna.platform.win32.WinNT;
  * Identifies the object-related security information being set or queried. This security information includes:
  * <ul>
  * <li>The owner of an object.</li>
- * <li>The primary group of an object.></li>
+ * <li>The primary group of an object.</li>
  * <li>The discretionary access control list(DACL) of an object.</li>
  * <li>The system access control list(SACL) of an object.</li>
  * </ul>
