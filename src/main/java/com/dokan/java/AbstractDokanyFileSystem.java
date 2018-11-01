@@ -1,7 +1,9 @@
 package com.dokan.java;
 
 import com.dokan.java.constants.dokany.MountError;
+import com.dokan.java.constants.dokany.MountOption;
 import com.dokan.java.structure.DokanOptions;
+import com.dokan.java.structure.EnumIntegerSet;
 import com.sun.jna.WString;
 import com.sun.jna.ptr.IntByReference;
 import org.slf4j.Logger;
@@ -219,8 +221,8 @@ public abstract class AbstractDokanyFileSystem implements DokanyFileSystem {
     }
 
     @Override
-    public void mount(Path mountPoint, String volumeName, int volumeSerialnumber, DokanOptions dokanOptions, boolean blocking) {
-        this.dokanOptions = dokanOptions;
+    public void mount(Path mountPoint, String volumeName, int volumeSerialnumber, boolean blocking, long timeout, long allocationUnitSize, long sectorSize, String UNCName, short threadCount, EnumIntegerSet<MountOption> options) {
+        this.dokanOptions = new DokanOptions(mountPoint.toString(), threadCount, options, UNCName, timeout, allocationUnitSize, sectorSize);
         this.mountPoint = mountPoint;
         this.volumeName = volumeName; //TODO: add checks for mountPoint, volumeName and volumeSerialNumber
         this.volumeSerialnumber = volumeSerialnumber;
@@ -260,6 +262,17 @@ public abstract class AbstractDokanyFileSystem implements DokanyFileSystem {
         }
     }
 
+    public void mount(Path mountPoint, EnumIntegerSet<MountOption> mountOptions) {
+        String uncName = null;
+        short threadCount = 5;
+        long timeout = 3000;
+        long allocationUnitSize = 4096;
+        long sectorsize = 512;
+        String volumeName = "DOKAN";
+        int volumeSerialnumber = 30975;
+        mount(mountPoint, volumeName, volumeSerialnumber, false, timeout, allocationUnitSize, sectorsize, uncName, threadCount, mountOptions);
+    }
+
     private int execMount(DokanOptions dokanOptions) {
         return NativeMethods.DokanMain(dokanOptions, this.dokanyOperations);
     }
@@ -267,10 +280,15 @@ public abstract class AbstractDokanyFileSystem implements DokanyFileSystem {
     @Override
     public void unmount() {
         LOG.info("Start to unmount volume {} at {} and shutdown.", this.volumeName, this.mountPoint);
-        if(NativeMethods.DokanRemoveMountPoint(new WString(mountPoint.toAbsolutePath().toString()))){
+        if (NativeMethods.DokanRemoveMountPoint(new WString(mountPoint.toAbsolutePath().toString()))) {
             LOG.info("Unmount operation successful.");
-        }else{
+        } else {
             LOG.error("Unable to unmount filesystem from {}. Please use `dokanctl.exe` to unmount manually.", mountPoint);
         }
+    }
+
+    @Override
+    public void close() throws Exception {
+        unmount();
     }
 }

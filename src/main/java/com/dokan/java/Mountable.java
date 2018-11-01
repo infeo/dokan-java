@@ -1,6 +1,7 @@
 package com.dokan.java;
 
-import com.dokan.java.structure.DokanOptions;
+import com.dokan.java.constants.dokany.MountOption;
+import com.dokan.java.structure.EnumIntegerSet;
 
 import java.nio.file.Path;
 
@@ -10,9 +11,9 @@ import java.nio.file.Path;
  * @author Armin Schrnek
  * @since 2.0
  */
-public interface Mountable {
+public interface Mountable extends AutoCloseable {
 
-    void mount(Path mountPoint, String volumeName, int volumeSerialnumber, DokanOptions dokanOptions, boolean blocking);
+    void mount(Path mountPoint, String volumeName, int volumeSerialnumber, boolean blocking, long timeout, long allocationUnitSize, long sectorSize, String UNCName, short threadCount, EnumIntegerSet<MountOption> options);
 
     void unmount();
 
