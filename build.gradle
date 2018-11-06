@@ -20,8 +20,9 @@ dependencies {
     api (group:'org.slf4j', name:'slf4j-api', version:slf4jVersion) //is this correct or should it be implementation?
 
     testImplementation (group:'org.slf4j', name:'slf4j-simple', version:'1.7.25')
-    testImplementation (group:'junit', name:'junit', version:'4.12')
-
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -43,4 +44,8 @@ task printProps {
         println maintainer
         println System.properties['system']
     }
+}
+
+test {
+    useJUnitPlatform()
 }
