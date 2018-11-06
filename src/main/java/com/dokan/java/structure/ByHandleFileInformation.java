@@ -164,7 +164,7 @@ public class ByHandleFileInformation extends Structure implements Structure.ByRe
     /**
      * Sets the last write time of the file.
      *
-     * @param lastWriteTime
+     * @param lastWriteTime the new last write timestamp of the file
      */
     public void setLastWriteTime(final long lastWriteTime) {
         this.ftLastWriteTime = DokanyUtils.getTime(lastWriteTime);
@@ -173,7 +173,7 @@ public class ByHandleFileInformation extends Structure implements Structure.ByRe
     /**
      * Sets the creation time of the file.
      *
-     * @param creationTime
+     * @param creationTime the new creation timestamp of the file
      */
     public void setCreationTime(final long creationTime) {
         this.ftCreationTime = DokanyUtils.getTime(creationTime);
@@ -182,7 +182,7 @@ public class ByHandleFileInformation extends Structure implements Structure.ByRe
     /**
      * Sets the size of the file.
      *
-     * @param sizeToSet
+     * @param sizeToSet the new size of the file
      */
     public void setFileSize(final long sizeToSet) {
         this.fileSize = sizeToSet;

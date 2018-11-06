@@ -26,11 +26,14 @@ public final class EnumIntegerSet<T extends Enum<T> & EnumInteger> extends Abstr
     }
 
     /**
-     * Creates a set of enumInteger objects which corresponds to the bit flag given as an integer.
+     * Creates a set of enumIntegers which corresponds to the bit flag given as an 32bit integer.
+     * <p>
+     * The type of the set is the enum class of the input array
      *
      * @param intValue the integer value of the combined bitflag
      * @param allEnumValues all possible values of this enumInteger
-     * @return a set of enumInteger values whose mask were actie in the intValue
+     * @param <T> enum type of the array implementing the EnumInteger interface
+     * @return a set of enumInteger values whose mask were active in the intValue
      */
     public static <T extends Enum<T> & EnumInteger> EnumIntegerSet<T> enumSetFromInt(final int intValue, final T[] allEnumValues) {
         EnumIntegerSet<T> elements = new EnumIntegerSet<>(allEnumValues[0].getDeclaringClass());
