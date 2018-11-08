@@ -18,7 +18,7 @@ public final class EnumIntegerSet<T extends Enum<T> & EnumInteger> extends Abstr
     private final EnumSet<T> elements;
 
     public EnumIntegerSet(final Class<T> clazz) {
-        elements = EnumSet.noneOf(clazz);
+        this.elements = EnumSet.noneOf(clazz);
     }
 
     public EnumIntegerSet(T first, T... others) {
@@ -89,4 +89,5 @@ public final class EnumIntegerSet<T extends Enum<T> & EnumInteger> extends Abstr
     public String toString() {
         return "EnumIntegerSet(elements=" + this.elements + ")";
     }
+
 }
