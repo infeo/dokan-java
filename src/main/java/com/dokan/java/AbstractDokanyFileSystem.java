@@ -262,6 +262,12 @@ public abstract class AbstractDokanyFileSystem implements DokanyFileSystem {
         }
     }
 
+    /**
+     * Helper constructor to easy the mounting with a lot of default values
+     *
+     * @param mountPoint
+     * @param mountOptions
+     */
     public void mount(Path mountPoint, EnumIntegerSet<MountOption> mountOptions) {
         String uncName = null;
         short threadCount = 5;
@@ -279,6 +285,7 @@ public abstract class AbstractDokanyFileSystem implements DokanyFileSystem {
 
     @Override
     public void unmount() {
+        //TODO: add check if this object is mounted at all and throw otherwise IllegalState exception
         LOG.info("Start to unmount volume {} at {} and shutdown.", this.volumeName, this.mountPoint);
         if (NativeMethods.DokanRemoveMountPoint(new WString(mountPoint.toAbsolutePath().toString()))) {
             LOG.info("Unmount operation successful.");
